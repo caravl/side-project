@@ -1,10 +1,10 @@
-- check routes with postman
 - check associations
 - download react-bootstrap
 - store(state) how much info to store on the front?
 
 - draw design schema
 - wireframe design (which pages to see)
+- check routes
 
 npm run build-watch - to begin the build process
 npm start - to start the app
@@ -65,5 +65,7 @@ ROUTES
       * ALL (where Activity country)
 
 Design Schema
-
+React Bootstrap
+  * http://coreui.io/demo/React_Demo/#/dashboard
+  * https://react-bootstrap.github.io/getting-started.html
 
