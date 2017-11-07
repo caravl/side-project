@@ -6,8 +6,6 @@ const { User, Activity, Destination } = require('../db/models');
 
 module.exports = api;
 
-api.get('/*', (_, res) => res.sendFile(resolve(__dirname, '..', 'public', 'index.html')))
-
 api.use('/users', require('./routes/users'));
 api.use('/destinations', require('./routes/destinations'));
 

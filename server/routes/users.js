@@ -8,10 +8,10 @@ module.exports = api;
 api.param('id', (req, res, next, id) => {
   User.findById(id)
   .then(function (user) {
-    if (!user) throw error;
+    if (!user) throw new Error('no user found');
     req.requesteduser = user;
     next();
-    return null;
+    // return null;
   })
   .catch(next);
 })
@@ -28,20 +28,21 @@ api.post('/', (req, res, next) => {
   .catch(next)
 });
 
-api.get('/:userId', (req, res, next) => {
-  User.findById(req.params.userId)
-  .then(user => res.json(user))
-  .catch(next)
+api.get('/:id', (req, res, next) => {
+  res.json(req.requesteduser)
 });
 
 
-api.put('/:userId', (req, res, next) => {
+api.put('/:id', (req, res, next) => {
+  // use api.params
   User.findById(req.params.userId)
   .then(user => user.update(req.body) )
+  // send response (updated user and 200 status code)
   .catch(next)
 });
 
-api.delete('/:userId', (req, res, next) => {
+api.delete('/:id', (req, res, next) => {
+  // use api.params
   User.findById(req.params.userId)
   .then(foundUser => {
     return foundUser.destroy();
