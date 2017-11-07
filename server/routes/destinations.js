@@ -1,5 +1,5 @@
 const api = require('express').Router();
-const { User  } = require('../../db/models/user');
+const User = require('../../db/models/user');
 const { Destination  } = require('../../db/models/destination');
 const { Activity  } = require('../../db/models/activity');
 
@@ -15,9 +15,12 @@ api.param('id', (req, res, next, id) => {
   })
   .catch(next);
 });
-
+// /api/destinations?country=USA
 api.get('/', (req, res, next) => {
-  Destination.findAll( { where: { country_name: x } } ) // how should this be written?
+  // req.query {'country': 'USA' }
+  // if (req.query) ... else findAll
+  //if (req.query.country)
+  Destination.findAll( { where: { 'country': 'USA'} } ) // how should this be written?
   .then(destination => res.json(destination))
   .catch(next)
 });
