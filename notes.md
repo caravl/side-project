@@ -1,5 +1,5 @@
 - check associations
-- download react-bootstrap
+- react-bootstrap
 - store(state) how much info to store on the front?
 
 - draw design schema

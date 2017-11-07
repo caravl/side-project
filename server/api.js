@@ -8,8 +8,8 @@ module.exports = api;
 
 api.get('/*', (_, res) => res.sendFile(resolve(__dirname, '..', 'public', 'index.html')))
 
-// api.use('/users', require('./users'));
-// api.use('/destinations', require('./destinations'));
+api.use('/users', require('./routes/users'));
+api.use('/destinations', require('./routes/destinations'));
 
 api.use( (req, res, next) => {
   res.status(404).send(`Something's wrong!`);

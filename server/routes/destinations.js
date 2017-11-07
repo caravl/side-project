@@ -1,5 +1,7 @@
 const api = require('express').Router();
-const { User, Activity, Destination } = require('.../db/models');
+const { User  } = require('../../db/models/user');
+const { Destination  } = require('../../db/models/destination');
+const { Activity  } = require('../../db/models/activity');
 
 module.exports = api;
 
@@ -15,7 +17,7 @@ api.param('id', (req, res, next, id) => {
 });
 
 api.get('/', (req, res, next) => {
-  Destination.findAll( { where: { country_name: x } } )
+  Destination.findAll( { where: { country_name: x } } ) // how should this be written?
   .then(destination => res.json(destination))
   .catch(next)
 });
@@ -27,20 +29,21 @@ api.post('/', (req, res, next) => {
 });
 
 api.get('/:destinationId', (req, res, next) => {
-  req.requestedDestination.reload(Destination.options.scopes.populated())
-  .then(requestedDestination => res.json(requestedDestination))
-  .catch(next)
-});
-
-api.put('/:destinationId', (req, res, next) => {
-  req.requestedDestination.update(req.body)
+  Destination.findById(req.params.destinationId)
   .then(destination => res.json(destination))
   .catch(next)
 });
 
+api.put('/:destinationId', (req, res, next) => {
+  Destination.findById(req.params.destinationId)
+  .then(destination => destination.update(req.body))
+  .catch(next)
+});
+
 api.delete('/:destinationId', (req, res, next) => {
-  // req.requestedDestination.destroy()
-  Destination.destroy( { where: { id: req.params.destinationId } } )
-  .then( () => res.status(204).end() )
+  Destination.findById(req.params.destinationId)
+  .then(destination => {
+    return destination.destroy();
+  })
   .catch(next)
 });

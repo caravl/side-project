@@ -1,5 +1,7 @@
 const api = require('express').Router();
-const { User, Activity, Destination } = require('.../db/models');
+const { User  } = require('../../db/models/user');
+const { Destination  } = require('../../db/models/destination');
+const { Activity  } = require('../../db/models/activity');
 
 module.exports = api;
 
@@ -27,20 +29,22 @@ api.post('/', (req, res, next) => {
 });
 
 api.get('/:userId', (req, res, next) => {
-  req.requestedUser.reload(User.options.scopes.populated())
-  .then(requestedUser => res.json(requestedUser) )
+  User.findById(req.params.userId)
+  .then(user => res.json(user))
   .catch(next)
 });
 
 
 api.put('/:userId', (req, res, next) => {
-  req.requestedUser.update(req.body)
-  .then(user => res.json(user) )
+  User.findById(req.params.userId)
+  .then(user => user.update(req.body) )
   .catch(next)
 });
 
 api.delete('/:userId', (req, res, next) => {
-  req.requestedUser.destroy()
-  .then( () => res.status(204).end() )
+  User.findById(req.params.userId)
+  .then(foundUser => {
+    return foundUser.destroy();
+  })
   .catch(next)
 });

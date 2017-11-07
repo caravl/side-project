@@ -1,5 +1,7 @@
 const api = require('express').Router();
-const { User, Activity, Destination } = require('.../db/models');
+const { User  } = require('../../db/models/user');
+const { Destination  } = require('../../db/models/destination');
+const { Activity  } = require('../../db/models/activity');
 
 module.exports = api;
 
@@ -26,22 +28,23 @@ api.post('/', (req, res, next) => {
     .catch(next)
 });
 
-api.get('/activityId', (req, res, next) => {
-  // Activity.findById(req.params.activityId)
-  req.requestedActivity.reload(Activity.options.scopes.populated())
-  .then(requestedActivity => res.json(requestedActivity))
-  .catch(next)
-});
-
-api.put('/:activityId', (req, res, next) => {
-  // Activity.findById(req.params.activityId)
-  req.requestedActivity.update(req.body)
+api.get('/:activityId', (req, res, next) => {
+  Activity.findById(req.params.activityId)
+  // req.requestedActivity.reload(Activity.options.scopes.populated())
   .then(activity => res.json(activity))
   .catch(next)
 });
 
+api.put('/:activityId', (req, res, next) => {
+  Activity.findById(req.params.activityId)
+  .then(activity => activity.update(req.body))
+  .catch(next)
+});
+
 api.delete('/:activityId', (req, res, next) => {
-  Activity.destroy( { where: { id: req.params.activityId } } )
-  .then( () => res.status(204).end() )
+  Activity.findById(req.params.activityId)
+  .then(activity => {
+    return activity.destroy();
+  })
   .catch(next)
 });
