@@ -1,7 +1,5 @@
 const api = require('express').Router();
-const User = require('../../db/models/user');
-const { Destination  } = require('../../db/models/destination');
-const { Activity  } = require('../../db/models/activity');
+const User, Activity, Destination, Suggestion = require('../../../db/models');
 
 module.exports = api;
 
@@ -11,16 +9,14 @@ api.param('id', (req, res, next, id) => {
     if (!destination) throw error;
     req.requestedDestination = destination;
     next();
-    return null;
   })
   .catch(next);
 });
 // /api/destinations?country=USA
 api.get('/', (req, res, next) => {
+  var queryCountry = req.query.country //
   // req.query {'country': 'USA' }
-  // if (req.query) ... else findAll
-  //if (req.query.country)
-  Destination.findAll( { where: { 'country': 'USA'} } ) // how should this be written?
+  Destination.findAll( { where: { 'country': queryCountry } } )
   .then(destination => res.json(destination))
   .catch(next)
 });
@@ -32,21 +28,25 @@ api.post('/', (req, res, next) => {
 });
 
 api.get('/:destinationId', (req, res, next) => {
-  Destination.findById(req.params.destinationId)
+  Destination.findById(req.requestedDestination)
   .then(destination => res.json(destination))
   .catch(next)
 });
 
 api.put('/:destinationId', (req, res, next) => {
-  Destination.findById(req.params.destinationId)
+  Destination.findById(req.requestedDestination)
   .then(destination => destination.update(req.body))
   .catch(next)
 });
 
 api.delete('/:destinationId', (req, res, next) => {
-  Destination.findById(req.params.destinationId)
+  Destination.findById(req.requestedDestination)
   .then(destination => {
     return destination.destroy();
   })
   .catch(next)
 });
+
+
+// throw createError(415, 'there's something wrong')
+// check all variables and req.requested users

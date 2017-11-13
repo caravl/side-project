@@ -13,13 +13,6 @@ const Activity = db.define('activity', {
   type: {
     type: Sequelize.ENUM,
     values: ['food', 'entertainment', 'culture', 'other']
-  },
-  rating: {
-    type: Sequelize.ENUM,
-    values: ['1', '2', '3', '4', '5']
-  },
-  comment: {
-    type: Sequelize.TEXT
   }
 });
 

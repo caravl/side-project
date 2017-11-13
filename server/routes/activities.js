@@ -1,7 +1,5 @@
 const api = require('express').Router();
-const { User  } = require('../../db/models/user');
-const { Destination  } = require('../../db/models/destination');
-const { Activity  } = require('../../db/models/activity');
+const User, Activity, Destination, Suggestion = require('../../../db/models');
 
 module.exports = api;
 
@@ -11,7 +9,6 @@ api.param('id', (req, res, next, id) => {
     if (!activity) throw error;
     req.requestedActivity = activity;
     next();
-    return null;
   })
   .catch(next);
 })
@@ -29,22 +26,24 @@ api.post('/', (req, res, next) => {
 });
 
 api.get('/:activityId', (req, res, next) => {
-  Activity.findById(req.params.activityId)
-  // req.requestedActivity.reload(Activity.options.scopes.populated())
+  Activity.findById(req.requestedActivity)
   .then(activity => res.json(activity))
   .catch(next)
 });
 
 api.put('/:activityId', (req, res, next) => {
-  Activity.findById(req.params.activityId)
+  Activity.findById(req.requestedActivity)
   .then(activity => activity.update(req.body))
   .catch(next)
 });
 
 api.delete('/:activityId', (req, res, next) => {
-  Activity.findById(req.params.activityId)
+  Activity.findById(req.requestedActivity)
   .then(activity => {
     return activity.destroy();
   })
   .catch(next)
 });
+
+// throw createError(415, 'there's something wrong')
+// check all variables and req.requested users
