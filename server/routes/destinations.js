@@ -1,24 +1,29 @@
 const api = require('express').Router();
-const User, Activity, Destination, Suggestion = require('../../../db/models');
+const Destination = require('../../db/models');
 
-module.exports = api;
-
-api.param('id', (req, res, next, id) => {
+api.param('destinationId', (req, res, next, id) => {
   Destination.findById(id)
-  .then(function (destination) {
-    if (!destination) throw error;
+  .then((destination) => {
+    if (!destination) {
+      var error = new Error('This destination is not found!')
+      error.status = 404
+      throw error
+    }
     req.requestedDestination = destination;
     next();
   })
   .catch(next);
 });
 // /api/destinations?country=USA
+// req.query = { country: "USA" }
 api.get('/', (req, res, next) => {
-  var queryCountry = req.query.country //
-  // req.query {'country': 'USA' }
-  Destination.findAll( { where: { 'country': queryCountry } } )
-  .then(destination => res.json(destination))
-  .catch(next)
+  var queryCountry = req.query.country
+  var query = queryCountry ? { where : { country: queryCountry }} : {}
+    Destination.findAll(query)
+    .then(destination => res.json(destination))
+    .catch(next)
+
+
 });
 
 api.post('/', (req, res, next) => {
@@ -28,25 +33,19 @@ api.post('/', (req, res, next) => {
 });
 
 api.get('/:destinationId', (req, res, next) => {
-  Destination.findById(req.requestedDestination)
+  res.json(req.requestedDestination)
+});
+
+api.put('/:destinationId', (req, res, next) => {
+  req.requestedDestination.update(req.body)
   .then(destination => res.json(destination))
   .catch(next)
 });
 
-api.put('/:destinationId', (req, res, next) => {
-  Destination.findById(req.requestedDestination)
-  .then(destination => destination.update(req.body))
-  .catch(next)
-});
-
 api.delete('/:destinationId', (req, res, next) => {
-  Destination.findById(req.requestedDestination)
-  .then(destination => {
-    return destination.destroy();
-  })
+  req.requestedDestination.destroy()
+  .then(() => res.status(204).end()) // res.sendStatus(200)
   .catch(next)
 });
 
-
-// throw createError(415, 'there's something wrong')
-// check all variables and req.requested users
+module.exports = api;

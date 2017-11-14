@@ -1,12 +1,14 @@
 const api = require('express').Router();
-const User, Activity, Destination, Suggestion = require('../../../db/models');
+const Suggestion = require('../../db/models');
 
-module.exports = api;
-
-api.param('id', (req, res, next, id) => {
+api.param('suggestionId', (req, res, next, id) => {
   Suggestion.findById(id)
-  .then(function (suggestion) {
-    if (!suggestion) throw error;
+  .then((suggestion) => {
+    if (!suggestion) {
+      var error = new Error('This suggestion is not found!')
+      error.status = 404
+      throw error
+    }
     req.requestedSuggestion = suggestion;
     next();
   })
@@ -14,7 +16,7 @@ api.param('id', (req, res, next, id) => {
 })
 
 api.get('/', (req, res, next) => {
-  Suggestion.findAll({})
+  Suggestion.findAll()
     .then(suggestion => res.json(suggestion))
     .catch(next)
 });
@@ -26,24 +28,19 @@ api.post('/', (req, res, next) => {
 });
 
 api.get('/:suggestionId', (req, res, next) => {
-  Suggestion.findById(req.requestedSuggestion)
+  res.json(req.requestedSuggestion)
+});
+
+api.put('/:suggestionId', (req, res, next) => {
+  req.requestedSuggestion.update(req.body)
   .then(suggestion => res.json(suggestion))
   .catch(next)
 });
 
-api.put('/:suggestionId', (req, res, next) => {
-  Suggestion.findById(req.requestedSuggestion)
-  .then(suggestion => suggestion.update(req.body))
-  .catch(next)
-});
-
 api.delete('/:suggestionId', (req, res, next) => {
-  Suggestion.findById(req.requestedSuggestion)
-  .then(suggestion => {
-    return suggestion.destroy();
-  })
+  req.requestedSuggestion.destroy()
+  .then(() => res.status(204).end())
   .catch(next)
 });
 
-// throw createError(415, 'there's something wrong')
-// check all variables and req.requested users
+module.exports = api;

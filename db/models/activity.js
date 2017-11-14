@@ -6,7 +6,7 @@ const Activity = db.define('activity', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  location: {
+  address: {
     type: Sequelize.STRING,
     allowNull: false
   },

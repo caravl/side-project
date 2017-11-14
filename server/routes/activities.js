@@ -1,20 +1,22 @@
 const api = require('express').Router();
-const User, Activity, Destination, Suggestion = require('../../../db/models');
+const Activity = require('../../db/models');
 
-module.exports = api;
-
-api.param('id', (req, res, next, id) => {
+api.param('activityId', (req, res, next, id) => {
   Activity.findById(id)
-  .then(function (activity) {
-    if (!activity) throw error;
-    req.requestedActivity = activity;
+  .then((activity) => {
+    if (!activity) {
+      var error = new Error('This activity is not found!')
+      error.status = 404
+      throw error
+    }
+    req.requestedActivity = activity
     next();
   })
   .catch(next);
 })
 
 api.get('/', (req, res, next) => {
-  Activity.findAll({})
+  Activity.findAll()
     .then(activity => res.json(activity))
     .catch(next)
 });
@@ -26,24 +28,19 @@ api.post('/', (req, res, next) => {
 });
 
 api.get('/:activityId', (req, res, next) => {
-  Activity.findById(req.requestedActivity)
+  res.json(req.requestedActivity)
+});
+
+api.put('/:activityId', (req, res, next) => {
+  req.requestedActivity.update(req.body)
   .then(activity => res.json(activity))
   .catch(next)
 });
 
-api.put('/:activityId', (req, res, next) => {
-  Activity.findById(req.requestedActivity)
-  .then(activity => activity.update(req.body))
-  .catch(next)
-});
-
 api.delete('/:activityId', (req, res, next) => {
-  Activity.findById(req.requestedActivity)
-  .then(activity => {
-    return activity.destroy();
-  })
+  req.requestedActivity.destroy()
+  .then(() => res.status(204).end())
   .catch(next)
 });
 
-// throw createError(415, 'there's something wrong')
-// check all variables and req.requested users
+module.exports = api;

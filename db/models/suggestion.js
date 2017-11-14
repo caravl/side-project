@@ -2,12 +2,8 @@ const db = require('../db');
 const Sequelize = require('sequelize');
 
 const Suggestion = db.define('suggestion', {
-  location: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
   rating: {
-    type: Sequelize.ENUM,
+    type: Sequelize.ENUM, // (value1,value2)
     values: ['1', '2', '3', '4', '5']
   },
   comment: {

@@ -4,15 +4,15 @@ const api = require('express').Router();
 const db = require('../db');
 const models = require('../db/models');
 
-module.exports = api;
-
 api.use('/users', require('./routes/users'));
 api.use('/destinations', require('./routes/destinations'));
 api.use('/activities', require('./routes/activities'));
 api.use('/suggestions', require('./routes/suggestions'));
 
-api.use( (req, res, next) => {
-  res.status(404).send(`Something's wrong!`);
+// error handling middleware
+api.use( (err, req, res, next) => {
+  console.error(err)
+  res.status(err.status || 500).send(err.message || `Internal Server Error`);
 });
 
-// add error handling middleware ????
+module.exports = api;
