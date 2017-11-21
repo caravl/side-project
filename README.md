@@ -1,16 +1,16 @@
 # WanderLove
 
-This should be a paragraph
+Share your travel memories and recommendations with your friends.  See what they would share with you about their favorite places.
 
 ## Action Plan
 
-- [ ] check associations
+- [x] check associations
+- [x] draw design schema
+- [x] wireframe design (which pages to see)
+- [x] check routes
 - [ ] react-bootstrap
-- [ ] store(state) how much info to store on the front?
-- [ ] draw design schema
-- [ ] wireframe design (which pages to see)
-- [ ] check routes
-
+- [ ] components
+- [ ] redux
 
 ## How to Start
 ```

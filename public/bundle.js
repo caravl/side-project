@@ -10735,7 +10735,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(
 // <Provider store={store}>
-__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Root__["default"], null),
+__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Root__["a" /* default */], null),
 // </Provider>,
 document.getElementById('app'));
 
@@ -24476,7 +24476,7 @@ module.exports = invariant;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_redux___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_redux__);
@@ -24505,17 +24505,15 @@ class Root extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
         'h1',
         null,
         '\'hi from root\''
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Navbar___default.a, null),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Footer___default.a, null)
+      )
     );
   }
 }
+/* harmony export (immutable) */ __webpack_exports__["a"] = Root;
 
-module.exports = Root;
+
 // add react bootstrap
 // exact path only when component doesn't have nested routes
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(289)(module)))
 
 /***/ }),
 /* 243 */
@@ -28884,36 +28882,6 @@ module.exports = function hoistNonReactStatics(targetComponent, sourceComponent,
 /* 288 */
 /***/ (function(module, exports) {
 
-
-
-/***/ }),
-/* 289 */
-/***/ (function(module, exports) {
-
-module.exports = function(originalModule) {
-	if(!originalModule.webpackPolyfill) {
-		var module = Object.create(originalModule);
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		Object.defineProperty(module, "exports", {
-			enumerable: true,
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
 
 
 /***/ })

@@ -6,7 +6,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 // import other components
 
-class Root extends Component {
+export default class Root extends Component {
 
     // use componentDidMount() to get state immediately after this component is mounted
 
@@ -14,7 +14,7 @@ class Root extends Component {
       return(
         <div>
           <h1>'hi from root'</h1>
-          <Navbar />
+          {/* <Navbar /> */}
           {/* <Router>
             <Switch>
               <Route exact path="/" component={Home} />
@@ -28,12 +28,11 @@ class Root extends Component {
               <Route path="/suggestions/:id" component={SingleSuggestion} />
             </Switch>
           </Router> */}
-          <Footer />
+          {/* <Footer /> */}
         </div>
       )
     }
   }
 
-module.exports = Root;
 // add react bootstrap
 // exact path only when component doesn't have nested routes
