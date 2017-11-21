@@ -1,12 +1,12 @@
-import { createStore, applyMiddleware } from 'redux'
-import { createLogger } from 'redux-logger'
-import thunk from 'redux-thunk'
+// import { createStore, applyMiddleware } from 'redux'
+// import { createLogger } from 'redux-logger'
+// import thunk from 'redux-thunk'
 
-import rootReducer from './redux'
+// import rootReducer from './redux'
 
-export default createStore(
+// export default createStore(
   // reducer, preloadedState, applyMiddleware
-)
+// )
 
 // createStore(reducer, [preloadedState], [enhancer])
 // createStore --> creates a redux store that holds the complete state tree of your app

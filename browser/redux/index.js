@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux'
-import users from './users'
-import destinations from './destinations'
-import activities from './activities'
-import suggestions from './suggestions'
+// import { combineReducers } from 'redux'
+// import users from './users'
+// import destinations from './destinations'
+// import activities from './activities'
+// import suggestions from './suggestions'
 
-export default combineReducers({ users, destinations, activities, suggestions })
+// export default combineReducers({ users, destinations, activities, suggestions })
 
 // combineReducers helper function turns an object whose values are different reducing functions into a single reducing function you can pass to `createStore`
 

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { Router } from 'react-router' // react-router3
+// import { Router } from 'react-router' // from react-router3 --> not what we want to use
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
-import Root from './components/Root'
 import Navbar from './Navbar'
 import Footer from './Footer'
 // import other components
@@ -14,8 +13,9 @@ class Root extends Component {
     render() {
       return(
         <div>
+          <h1>'hi from root'</h1>
           <Navbar />
-          <Router>
+          {/* <Router>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/users" component={AllUsers} />
@@ -27,12 +27,13 @@ class Root extends Component {
               <Route exact path="/suggestions" component={AllSuggestions} />
               <Route path="/suggestions/:id" component={SingleSuggestion} />
             </Switch>
-          </Router>
+          </Router> */}
           <Footer />
         </div>
       )
     }
   }
 
+module.exports = Root;
 // add react bootstrap
 // exact path only when component doesn't have nested routes

@@ -15,7 +15,7 @@ module.exports = {
       {
         test: /jsx?$/,
         exclude: /(node_modules)/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['react', 'stage-2']
         }
@@ -23,6 +23,6 @@ module.exports = {
     ]
   }
 }
-// create a public folder for index stylesheets
+
 // stage-2 is more experimental than es2015
-// regexr
+
