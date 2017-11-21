@@ -1,15 +1,27 @@
-- check associations
-- react-bootstrap
-- store(state) how much info to store on the front?
+# WanderLove
 
-- draw design schema
-- wireframe design (which pages to see)
-- check routes
+This should be a paragraph
 
+## Action Plan
+
+- [ ] check associations
+- [ ] react-bootstrap
+- [ ] store(state) how much info to store on the front?
+- [ ] draw design schema
+- [ ] wireframe design (which pages to see)
+- [ ] check routes
+
+
+## How to Start
+```
 npm run build-watch - to begin the build process
 npm start - to start the app
+```
 
-DB
+## Back-End
+
+### Sequelize Models
+
   * User
     * Name
     * Email
@@ -30,7 +42,7 @@ DB
     * Suggestion belongsTo Activity
     * Activity belongsToMany User (through table is `Suggestion`)
 
-ROUTES
+### Routes
   * User
     * GET
       * ALL
@@ -64,8 +76,9 @@ ROUTES
       * ALL (where Activity)
       * ALL (where Activity country)
 
-Design Schema
+## Design
+
 React Bootstrap
-  * http://coreui.io/demo/React_Demo/#/dashboard
-  * https://react-bootstrap.github.io/getting-started.html
+  * [CoreUI](http://coreui.io/demo/React_Demo/#/dashboard)
+  * [React Bootstrap](https://react-bootstrap.github.io/getting-started.html)
 
