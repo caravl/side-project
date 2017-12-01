@@ -1,23 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { Router } from 'react-router' // from react-router3 --> not what we want to use
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import Navbar from './Navbar'
 import Footer from './Footer'
-// import other components
+import AllDestinations from './AllDestinations'
 
 export default class Root extends Component {
 
-    // use componentDidMount() to get state immediately after this component is mounted
-
     render() {
       return(
-        <div>
-          <h1>'hi from root'</h1>
-          {/* <Navbar /> */}
-          {/* <Router>
+        <Router>
+          <div>
+            <Navbar />
             <Switch>
-              <Route exact path="/" component={Home} />
+            <Route exact path="/destinations" component={AllDestinations} />
+          {/*
+            <Switch>
+
               <Route exact path="/users" component={AllUsers} />
               <Route path="/users/:id" component={SingleUser} />
               <Route exact path="/destinations" component={AllDestinations} />
@@ -26,13 +25,17 @@ export default class Root extends Component {
               <Route path="/activities/:id" component={SingleActivity} />
               <Route exact path="/suggestions" component={AllSuggestions} />
               <Route path="/suggestions/:id" component={SingleSuggestion} />
+              {/* <Footer />
             </Switch>
-          </Router> */}
-          {/* <Footer /> */}
-        </div>
+            */}
+          </Switch>
+          </div>
+        </Router>
       )
     }
   }
 
 // add react bootstrap
 // exact path only when component doesn't have nested routes
+
+// import { Router } from 'react-router' // from react-router3 --> not what we want to use

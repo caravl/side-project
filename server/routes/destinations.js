@@ -14,6 +14,7 @@ api.param('destinationId', (req, res, next, id) => {
   })
   .catch(next);
 });
+
 // /api/destinations?country=USA
 // req.query = { country: "USA" }
 api.get('/', (req, res, next) => {
@@ -22,8 +23,6 @@ api.get('/', (req, res, next) => {
     Destination.findAll(query)
     .then(destination => res.json(destination))
     .catch(next)
-
-
 });
 
 api.post('/', (req, res, next) => {

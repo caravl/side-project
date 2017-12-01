@@ -1,0 +1,26 @@
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  font-family: "Helvetica Neue";
+  margin: 0;
+}
+
+/* navbar */
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: mediumseagreen;
+  padding: 10px;
+}
+.navbar-list {
+  display: flex;
+  padding: 20px;
+}
+.navbar-logo {
+  padding: 30px;
+}
+
+

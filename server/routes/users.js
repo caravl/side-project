@@ -1,7 +1,6 @@
 const api = require('express').Router();
 const User = require('../../db/models');
 
-
 api.param('id', (req, res, next, id) => {
   User.findById(id)
   .then((user) => {
